@@ -208,3 +208,6 @@ def weak_cross_entropy_2d(y_pred, y_true, num_classes=None, epsilon=0.0001,
 
         loss = tf.add_n(tf.get_collection('losses'), name='total_loss')
     return loss
+def multi_label_loss(y_pred, y_true):
+    with tf.name_scope("MultiLabelCrossentropy"):
+       return tf.reduce_mean(tf.log(tf.reduce_logsumexp(y_pred)/tf.reduce_logsumexp(y_true)))
